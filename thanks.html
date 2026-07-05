@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thank You – DIY Plumbing Workshop</title>
+  <meta name="description" content="Thank you for registering for the DIY Plumbing Workshop for Beginners.">
+
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5e6a75;
+      --blue: #1167b1;
+      --blue-dark: #0b4f89;
+      --yellow: #ffc857;
+      --green: #168a5b;
+      --soft: #f4f8fb;
+      --line: #dce6ee;
+      --shadow: 0 18px 45px rgba(14, 44, 69, .14);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px 18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 200, 87, .35), transparent 35%),
+        linear-gradient(135deg, #ffffff 0%, #ecf7ff 100%);
+      line-height: 1.55;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(28px, 5vw, 48px);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      background: #def7ec;
+      color: var(--green);
+      font-size: 38px;
+      font-weight: 950;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 auto 18px;
+      max-width: 620px;
+    }
+
+    .next {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      text-align: left;
+      margin: 26px auto;
+      max-width: 560px;
+    }
+
+    .next strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .next ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 22px;
+      text-decoration: none;
+      font-weight: 950;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 12px 24px rgba(17, 103, 177, .24);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--blue-dark);
+      border: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="icon">✓</div>
+    <h1>Thank you — your registration was received.</h1>
+    <p>We will follow up with payment instructions and confirmation details for your selected DIY Plumbing Workshop date.</p>
+
+    <div class="next">
+      <strong>What happens next?</strong>
+      <ol>
+        <li>We check your selected date and available seat.</li>
+        <li>You receive payment instructions.</li>
+        <li>Your seat is confirmed after payment.</li>
+      </ol>
+    </div>
+
+    <p>Please keep an eye on your WhatsApp or email.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="index.html">Back to Workshop Page</a>
+      <a class="btn btn-secondary" href="register.html">Submit Another Registration</a>
+    </div>
+  </main>
+
+  <script>
+    if (typeof fbq === 'function') {
+      fbq('track', 'CompleteRegistration');
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', 'complete_registration', {
+        event_category: 'registration_form',
+        event_label: 'DIY Plumbing August 2026'
+      });
+    }
+  </script>
+</body>
+</html>
