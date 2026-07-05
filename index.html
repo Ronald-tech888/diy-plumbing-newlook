@@ -433,6 +433,7 @@
     }
 
     .sticky-mobile { display: none; }
+    .sticky-mobile.is-hidden { display: none; }
 
     @media (max-width: 860px) {
       .hero-grid,
@@ -697,6 +698,19 @@
         }
       });
     });
+
+    const stickyMobile = document.querySelector('.sticky-mobile');
+    const heroCard = document.querySelector('.hero-card');
+    if (stickyMobile && heroCard && 'IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver(function(entries) {
+        const heroVisible = entries.some(function(entry) {
+          return entry.isIntersecting;
+        });
+        stickyMobile.classList.toggle('is-hidden', heroVisible);
+      }, { threshold: 0.05 });
+
+      heroObserver.observe(heroCard);
+    }
   </script>
 
 </body>
