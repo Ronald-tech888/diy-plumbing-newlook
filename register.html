@@ -251,7 +251,7 @@
 
         <form action="https://formspree.io/f/mojbnpwl" method="POST">
           <input type="hidden" name="_subject" value="New DIY Plumbing August Workshop Registration">
-          <input type="hidden" name="_next" value="thanks.html">
+          <input type="hidden" name="_next" value="https://ronald-tech888.github.io/diy-plumbing-newlook/thanks.html">
           <input type="text" name="_gotcha" style="display:none">
 
           <label>
@@ -284,8 +284,8 @@
           <label>
             Ticket Selection *
             <div class="radio-grid">
-              <label class="radio-card"><input type="radio" name="Ticket" value="Early Bird – RM280" required> Early Bird (first 5 seats only) – RM280</label>
-              <label class="radio-card"><input type="radio" name="Ticket" value="Standard – RM350"> Standard – RM350</label>
+              <label class="radio-card"><input type="radio" name="Ticket" value="Early Bird - RM280" required> Early Bird (first 5 seats only) - RM280</label>
+              <label class="radio-card"><input type="radio" name="Ticket" value="Standard - RM350"> Standard - RM350</label>
             </div>
           </label>
 
@@ -293,7 +293,7 @@
             Payment Method *
             <div class="radio-grid">
               <label class="radio-card"><input type="radio" name="Payment Method" value="Touch 'n Go eWallet" required> Touch 'n Go eWallet (send to 133083049)</label>
-              <label class="radio-card"><input type="radio" name="Payment Method" value="Online Transfer"> HLB Transfer (04100099089 · Ong Soon Chong)</label>
+              <label class="radio-card"><input type="radio" name="Payment Method" value="Online Transfer"> HLB Transfer (04100099089 - Ong Soon Chong)</label>
             </div>
           </label>
 
@@ -323,7 +323,15 @@
   </main>
 
   <script>
-    document.querySelector('form').addEventListener('submit', function() {
+    document.querySelector('form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+
       if (typeof fbq === 'function') {
         fbq('track', 'Lead');
       }
@@ -332,6 +340,25 @@
           event_category: 'registration_form',
           event_label: 'DIY Plumbing August 2026'
         });
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          window.location.href = 'thanks.html';
+          return;
+        }
+
+        throw new Error('Form submission failed');
+      } catch (error) {
+        alert('Sorry, the form could not be submitted. Please try again, or WhatsApp +6013-308-3049.');
+        button.disabled = false;
+        button.textContent = originalText;
       }
     });
   </script>
