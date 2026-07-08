@@ -263,7 +263,12 @@
 
   <script>
     if (typeof fbq === 'function') {
-      fbq('track', 'CompleteRegistration');
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'DIY Plumbing Workshop August 2026',
+        content_category: 'Workshop',
+        value: 280,
+        currency: 'MYR'
+      });
     }
     if (typeof gtag === 'function') {
       gtag('event', 'complete_registration', {

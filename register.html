@@ -18,6 +18,12 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1644467059955423');
     fbq('track', 'PageView');
+    fbq('track', 'InitiateCheckout', {
+      content_name: 'DIY Plumbing Workshop August 2026',
+      content_category: 'Workshop',
+      value: 280,
+      currency: 'MYR'
+    });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -352,7 +358,12 @@
       button.textContent = 'Submitting...';
 
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead');
+        fbq('track', 'Lead', {
+          content_name: 'DIY Plumbing Workshop August 2026',
+          content_category: 'Workshop',
+          value: 280,
+          currency: 'MYR'
+        });
       }
       if (typeof gtag === 'function') {
         gtag('event', 'submit_registration', {
