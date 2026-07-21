@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Register – DIY Plumbing Workshop for Beginners</title>
   <meta name="description" content="Register for the DIY Plumbing Workshop for Beginners in Damansara Damai, Petaling Jaya.">
+  <script>
+    const directRegistrationVisit = !new URLSearchParams(window.location.search).has('source');
+    if (directRegistrationVisit) {
+      window.location.replace('index.html');
+    }
+  </script>
 
   <!-- Meta Pixel Code: DIY Plumbing August Meta Ads -->
   <script>
@@ -219,6 +225,25 @@
       margin-top: 4px;
     }
 
+    .radio-card.is-sold-out {
+      background: #f3f6f9;
+      color: #7a8a9a;
+      border-style: dashed;
+      cursor: not-allowed;
+    }
+
+    .radio-card.is-sold-out input {
+      cursor: not-allowed;
+    }
+
+    .sold-out-note {
+      display: block;
+      margin-top: 4px;
+      color: #d04444;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -259,7 +284,7 @@
       <section class="panel">
         <div class="eyebrow">Registration</div>
         <h1>Reserve your DIY Plumbing seat.</h1>
-        <p>Fill in your details below. After submitting, you will receive payment instructions and confirmation details.</p>
+        <p>Choose your date and ticket below. Your seat is locked after you submit the form and send the payment slip.</p>
 
         <div class="facts">
           <div class="fact"><span>Workshop</span> DIY Plumbing for Beginners</div>
@@ -268,7 +293,7 @@
           <div class="fact"><span>Class size</span> Max 12 participants</div>
         </div>
 
-        <div class="price-note">Early Bird: RM280 for first 5 confirmed seats. Standard: RM350 after Early Bird seats are taken.</div>
+        <div class="price-note">Early Bird: RM280 for first 5 confirmed seats. Buddy Pass: RM520 for 2 pax. Standard: RM350 after Early Bird seats are taken.</div>
       </section>
 
       <section class="panel">
@@ -299,8 +324,8 @@
             Choose your preferred workshop date *
             <span class="field-note">Choose one Saturday session.</span>
             <div class="radio-grid">
-              <label class="radio-card"><input type="radio" name="Workshop Date" value="1 August 2026" required> 1 Aug 2026</label>
-              <label class="radio-card"><input type="radio" name="Workshop Date" value="8 August 2026"> 8 Aug 2026</label>
+              <label class="radio-card is-sold-out"><input type="radio" name="Workshop Date" value="1 August 2026" disabled> <span>1 Aug 2026<span class="sold-out-note">Early Bird Sold Out</span></span></label>
+              <label class="radio-card"><input type="radio" name="Workshop Date" value="8 August 2026" required> 8 Aug 2026</label>
               <label class="radio-card"><input type="radio" name="Workshop Date" value="15 August 2026"> 15 Aug 2026</label>
               <label class="radio-card"><input type="radio" name="Workshop Date" value="22 August 2026"> 22 Aug 2026</label>
             </div>
@@ -310,6 +335,7 @@
             Ticket Selection *
             <div class="radio-grid">
               <label class="radio-card"><input type="radio" name="Ticket" value="Early Bird - RM280" required> Early Bird (first 5 seats only) - RM280</label>
+              <label class="radio-card"><input type="radio" name="Ticket" value="Buddy Pass - RM520"> Buddy Pass (2 pax) - RM520</label>
               <label class="radio-card"><input type="radio" name="Ticket" value="Standard - RM350"> Standard - RM350</label>
             </div>
           </label>
@@ -340,7 +366,7 @@
             I understand seats are confirmed only after payment slip is sent. Replacements allowed; no refunds within 3 days of the workshop.
           </label>
 
-          <button class="btn" type="submit">Submit & Continue to Payment</button>
+          <button class="btn" type="submit">Submit Registration & Send Payment Slip</button>
           <p class="privacy">Your details are used only to follow up on this workshop registration.</p>
         </form>
       </section>
@@ -348,6 +374,30 @@
   </main>
 
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const selectedDate = params.get('date');
+    const selectedTicket = params.get('ticket');
+
+    const dateMap = {
+      '8-Aug': '8 August 2026',
+      '15-Aug': '15 August 2026',
+      '22-Aug': '22 August 2026'
+    };
+    const ticketMap = {
+      'early-bird': 'Early Bird - RM280',
+      'buddy-pass': 'Buddy Pass - RM520',
+      'standard': 'Standard - RM350'
+    };
+
+    if (dateMap[selectedDate]) {
+      const dateInput = document.querySelector('input[name="Workshop Date"][value="' + dateMap[selectedDate] + '"]');
+      if (dateInput) dateInput.checked = true;
+    }
+    if (ticketMap[selectedTicket]) {
+      const ticketInput = document.querySelector('input[name="Ticket"][value="' + ticketMap[selectedTicket] + '"]');
+      if (ticketInput) ticketInput.checked = true;
+    }
+
     document.querySelector('form').addEventListener('submit', async function(event) {
       event.preventDefault();
 
@@ -357,21 +407,6 @@
       button.disabled = true;
       button.textContent = 'Submitting...';
 
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: 'DIY Plumbing Workshop August 2026',
-          content_category: 'Workshop',
-          value: 280,
-          currency: 'MYR'
-        });
-      }
-      if (typeof gtag === 'function') {
-        gtag('event', 'submit_registration', {
-          event_category: 'registration_form',
-          event_label: 'DIY Plumbing August 2026'
-        });
-      }
-
       try {
         const response = await fetch(form.action, {
           method: 'POST',
@@ -380,6 +415,20 @@
         });
 
         if (response.ok) {
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+              content_name: 'DIY Plumbing Workshop August 2026',
+              content_category: 'Workshop',
+              value: 280,
+              currency: 'MYR'
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'submit_registration', {
+              event_category: 'registration_form',
+              event_label: 'DIY Plumbing August 2026'
+            });
+          }
           window.location.href = 'thanks.html';
           return;
         }
