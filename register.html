@@ -25,7 +25,7 @@
     fbq('init', '1644467059955423');
     fbq('track', 'PageView');
     fbq('track', 'InitiateCheckout', {
-      content_name: 'DIY Plumbing Workshop August 2026',
+      content_name: 'DIY Plumbing Workshop August/September 2026',
       content_category: 'Workshop',
       value: 350,
       currency: 'MYR'
@@ -300,7 +300,7 @@
         <h2>Registration Form</h2>
 
         <form action="https://formspree.io/f/mojbnpwl" method="POST">
-          <input type="hidden" name="_subject" value="New DIY Plumbing August Workshop Registration">
+          <input type="hidden" name="_subject" value="New DIY Plumbing August/September Workshop Registration">
           <input type="hidden" name="_next" value="https://ronald-tech888.github.io/diy-plumbing-newlook/thanks.html">
           <input type="text" name="_gotcha" style="display:none">
 
@@ -324,10 +324,10 @@
             Choose your preferred workshop date *
             <span class="field-note">Choose one Saturday session.</span>
             <div class="radio-grid">
-              <label class="radio-card is-sold-out"><input type="radio" name="Workshop Date" value="1 August 2026" disabled> <span>1 Aug 2026<span class="sold-out-note">Early Bird Sold Out</span></span></label>
-              <label class="radio-card is-sold-out"><input type="radio" name="Workshop Date" value="8 August 2026" disabled> <span>8 Aug 2026<span class="sold-out-note">Early Bird Sold Out</span></span></label>
+<label class="radio-card is-sold-out"><input type="radio" name="Workshop Date" value="8 August 2026" disabled> <span>8 Aug 2026<span class="sold-out-note">Early Bird Sold Out</span></span></label>
               <label class="radio-card"><input type="radio" name="Workshop Date" value="15 August 2026"> 15 Aug 2026</label>
               <label class="radio-card"><input type="radio" name="Workshop Date" value="22 August 2026"> 22 Aug 2026</label>
+              <label class="radio-card"><input type="radio" name="Workshop Date" value="5 September 2026"> 5 Sep 2026</label>
             </div>
           </label>
 
@@ -379,6 +379,7 @@
 
     const dateMap = {
       '8-Aug': '8 August 2026',
+      '5-Sep': '5 September 2026',
       '15-Aug': '15 August 2026',
       '22-Aug': '22 August 2026'
     };
@@ -415,7 +416,7 @@
         if (response.ok) {
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', {
-              content_name: 'DIY Plumbing Workshop August 2026',
+              content_name: 'DIY Plumbing Workshop August/September 2026',
               content_category: 'Workshop',
               value: 280,
               currency: 'MYR'
@@ -424,7 +425,7 @@
           if (typeof gtag === 'function') {
             gtag('event', 'submit_registration', {
               event_category: 'registration_form',
-              event_label: 'DIY Plumbing August 2026'
+              event_label: 'DIY Plumbing August/September 2026'
             });
           }
           window.location.href = 'thanks.html';
