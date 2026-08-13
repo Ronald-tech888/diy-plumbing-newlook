@@ -266,6 +266,30 @@
       margin: -4px 0 0;
     }
 
+    .consent-section {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--soft);
+    }
+
+    .consent-section h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.01em;
+    }
+
+    .consent-section p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .consent-option {
+      background: white;
+    }
+
     @media (max-width: 840px) {
       .page-grid { grid-template-columns: 1fr; }
     }
@@ -365,8 +389,34 @@
             I understand seats are confirmed only after payment slip is sent. Replacements allowed; no refunds within 3 days of the workshop.
           </label>
 
+          <section class="consent-section" aria-labelledby="pdpa-heading">
+            <h3 id="pdpa-heading">Personal Data Protection &amp; Privacy</h3>
+            <p>By submitting this form, I acknowledge that the organiser of the DIY Plumbing Workshop may collect, process and store the personal data I provide for registration, payment, workshop administration, communication, certification, safety and other purposes reasonably related to the workshop, in accordance with Malaysia's Personal Data Protection Act 2010 (Act 709).</p>
+            <p>Where reasonably necessary for these purposes, relevant information may be shared with the trainer, venue, training partners and service providers involved in organising and delivering the workshop. It will not be disclosed to unrelated third parties except where required by law or with appropriate consent.</p>
+            <p>I may request access to or correction of my personal data, or withdraw consent where applicable, by contacting the organiser via WhatsApp at +6013-308-3049 or email at purchasingpoweruser@gmail.com.</p>
+
+            <label class="radio-card consent-option">
+              <input type="checkbox" name="PDPA Acknowledgement" value="I have read and understood the Personal Data Protection & Privacy Notice" required>
+              I have read and understood the Personal Data Protection &amp; Privacy Notice above. *
+            </label>
+          </section>
+
+          <section class="consent-section" aria-labelledby="permissions-heading">
+            <h3 id="permissions-heading">Optional Permissions</h3>
+
+            <label class="radio-card consent-option">
+              <input type="checkbox" name="Photo and Video Consent" value="I consent to identifiable photos and videos being used">
+              I consent to photos or videos taken during the workshop in which I may be identifiable being used for documentation, social media and promotional purposes. <span class="field-note">Optional</span>
+            </label>
+
+            <label class="radio-card consent-option">
+              <input type="checkbox" name="Marketing Consent" value="I agree to receive future workshop and programme updates">
+              I agree to receive information about future DIY Plumbing workshops, courses and related programmes via WhatsApp, email or other communication channels. <span class="field-note">Optional</span>
+            </label>
+          </section>
+
           <button class="btn" type="submit">Submit Registration & Send Payment Slip</button>
-          <p class="privacy">Your details are used only to follow up on this workshop registration.</p>
+          <p class="privacy">The optional permissions are not required to register for the workshop.</p>
         </form>
       </section>
     </div>
